@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&family=Caveat:wght@600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  /* Base palette — warm cream + heart/house logo colors */
+  --paper: #fbf1e4;
+  --paper-raised: #fffbf3;
+  --ink: #4a3728;
+  --ink-soft: #8a7761;
+  --line: #e7d9be;
+
+  /* Accents, drawn straight from the real logo + flyers */
+  --brick: #d2645a;       /* coral-red heart accent from the logo */
+  --brick-dark: #b84e45;
+  --brick-soft: #fbe4e1;
+  --sage: #7d9a6c;        /* borrowed from stationery-site inspo, used for "healthy/in-stock" states */
+  --sage-dark: #5f7c50;
+  --sage-soft: #e7eee0;
+  --ochre: #d68f2e;       /* mustard from the logo background */
+  --ochre-dark: #b3721e;
+  --ochre-soft: #fbebd2;
+  --danger: #a63b32;
+  --danger-soft: #f6e0dc;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-brick: var(--brick);
+  --color-brick-dark: var(--brick-dark);
+  --color-brick-soft: var(--brick-soft);
+  --color-sage: var(--sage);
+  --color-sage-dark: var(--sage-dark);
+  --color-sage-soft: var(--sage-soft);
+  --color-ochre: var(--ochre);
+  --color-ochre-dark: var(--ochre-dark);
+  --color-ochre-soft: var(--ochre-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --font-display: "Fredoka", sans-serif;   /* chunky bubble headlines, matches her flyers */
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Quicksand", ui-sans-serif, sans-serif; /* used for data/quantities, still rounded not clinical */
+  --font-script: "Caveat", cursive;         /* handwritten accent, used sparingly */
+}
+
+body {
+  background-color: var(--paper);
+  /* faint dot-grid texture, a quiet nod to the gingham/graph-paper flyer backgrounds */
+  background-image: radial-gradient(circle, rgba(74, 55, 40, 0.05) 1px, transparent 1px);
+  background-size: 18px 18px;
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+.font-mono, .tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+/* "Sticker" card: bold ink outline + a hard offset shadow instead of a soft
+   blur, echoing the flat-color/thick-outline look of the reference sites
+   the redesign borrowed from. Used for primary content cards — stat tiles,
+   panel widgets, table wrappers — anything that should read as a distinct,
+   pick-up-able piece on the paper background. */
+.pop-card {
+  border: 2px solid var(--ink);
+  box-shadow: 5px 5px 0 rgba(74, 55, 40, 0.08);
+}
+
+/* Signature motif: a soft rounded "sticker tag" with a small heart charm,
+   echoing the heart in Hearts Out for Homeless' actual logo. */
+.hang-tag {
+  position: relative;
+  border: 2px solid var(--line);
+  border-radius: 8px 20px 20px 8px;
+  background: var(--paper-raised);
+  padding-left: 28px;
+}
+
+.hang-tag::before {
+  content: "♥";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  line-height: 1;
+  color: var(--tag-accent, var(--line));
+}
+
+.hang-tag--sage {
+  border-color: var(--sage);
+  --tag-accent: var(--sage);
+}
+
+.hang-tag--ochre {
+  border-color: var(--ochre);
+  --tag-accent: var(--ochre);
+}
+
+.hang-tag--brick {
+  border-color: var(--brick);
+  --tag-accent: var(--brick);
+}
+
+/* Visible keyboard focus, respected everywhere */
+:focus-visible {
+  outline: 2px solid var(--brick);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
